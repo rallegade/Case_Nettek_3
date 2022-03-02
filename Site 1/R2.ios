@@ -75,21 +75,25 @@ interface Tunnel 0
  tunnel protection ipsec profile IPSEC_PROFILE
 !exit
 !
+! Towards FW1
 interface GigabitEthernet0/0/0
-! ip address !IP for interface towards R1! 
+ ip address 172.16.1.13
  no shut
 exit
 !
+! Towards R3
 interface GigabitEthernet0/0/1
-! ip address !IP for interface towards R3!
+ ip address 172.16.1.17 255.255.255.248
  no shut
 exit
 !
-!interface GigabitEthernet0/1/0
-! ip address
-! no shut
+! Towards D1
+interface GigabitEthernet0/1/0
+ ip address 172.16.1.21 255.255.255.248
+ no shut
 !
-!interface GigabitEthernet0/1/1
-! ip address
-! no shut
+! Towards D2
+interface GigabitEthernet0/1/1
+ ip address 172.16.1.25 255.255.255.248
+ no shut
 !
