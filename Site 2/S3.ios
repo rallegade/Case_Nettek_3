@@ -66,13 +66,6 @@ spanning-tree portfast
 no shutdown
 exit  
 !
-Interface range fa0/2-23
-switchport trunk encapsulation dot1q
-switchport mode access 
-switchport access allowed vlan 10,20,30,40,50,99
-spanning-tree portfast
-shutdown
-!
 interface fa0/24
 switchport trunk encapsulation dot1q
 switchport mode access
