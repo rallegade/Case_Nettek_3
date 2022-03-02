@@ -1,8 +1,7 @@
 !S1
 enable
 configure terminal
-hostname D32
-ip routing
+hostname S1
 !
 line con 0
  exec-timeout 10 0
