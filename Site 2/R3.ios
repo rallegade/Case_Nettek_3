@@ -1,0 +1,95 @@
+!R3
+enable
+configure terminal
+hostname R3
+ip routing
+!
+line con 0
+ exec-timeout 10 0
+ loggin synchronous
+ login local
+ exit
+banner motd ^ 
+UNAUTHORIZED ACCESS TO THIS DEVICE IS PROHIBITED
+You must have explicit, authorized permission to access or configure this device. Unauthorized attempts and actions to access or use this system may result in civil and/or criminal penalties. All activities performed on this device are logged and monitored. ^^
+^
+! 
+! kryptering af PW
+!
+service password-encryption
+!
+! setting up ssh
+!
+enable secret cisco
+!
+ip ssh version 2
+ip domain-name RKV.local
+crypto key generate rsa general-keys modulus 2048
+!
+! Set ssh version to V2
+!
+ip ssh version 2
+!
+username 439291a privilege 15 secret 5 $1$O3u3$.UV9kHhLqVczAADeZAWhk0
+!
+line vty 0 4
+ login local
+ transport input ssh
+ logging synchronous
+ exec-timeout 10 0
+ exit
+line vty 5 15
+ login local
+ transport input ssh
+ logging synchronous
+ exec-timeout 10 0
+ exit
+!
+! Setting up IPsec configuration
+!
+! ISAKMP Policy
+crypto isakmp policy 10
+ encryption aes 256
+ hash sha256
+ authentication pre-share group 14
+ lifetime 3600
+! ISAKMP Pre-Shared Key
+crypto isakmp key S0ue6Ba04u2RGUe1A3 address 172.16.1.18
+! IPsec Transform Set
+crypto ipsec transform-set AES_SHA esp-aes 256 esp-sha-hmac
+ mode transport
+ exit
+! IPsec Profile
+Crypto ipsec profile IPSEC_PROFILE
+ set transform-set AES_SHA
+exit
+!
+! Setup interfaces
+!
+! Virtual Tunnel Interface to R2
+interface Tunnel 0
+ ip address 172.16.100.2 255.255.255.248
+ tunnel source 
+ tunnel destination 
+ tunnel mode ipsec ipv4
+ tunnel protection ipsec profile IPSEC_PROFILE
+!exit
+!
+! Towards R2
+interface GigabitEthernet0/0/1
+ ip address 172.16.1.18 255.255.255.248
+ no shut
+exit
+! interface GigabitEthernet0/0/1
+! ip address 
+! no shut
+! exit
+!
+!interface GigabitEthernet0/1/0
+! ip address
+! no shut
+!
+!interface GigabitEthernet0/1/1
+! ip address
+! no shut
+!
