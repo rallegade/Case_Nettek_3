@@ -66,6 +66,38 @@ exit
 !
 !! Setting up interfaces
 !
+interface fa0/1
+switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport trunk allowed vlan 10,20,30,40,50,99
+spanning-tree portfast
+no shutdown
+exit 
+!
+interface fa0/2
+switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport trunk allowed vlan 10,20,30,40,50,99
+spanning-tree portfast
+no shutdown
+exit 
+!
+interface fa0/3
+switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport trunk allowed vlan 10,20,30,40,50,99
+spanning-tree portfast
+no shutdown
+exit 
+!
+interface range fa0/4-22
+switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport trunk allowed vlan 10,20,30,40,50,99
+spanning-tree portfast
+shutdown
+exit
+!
 interface range fa0/23-24
 switchport trunk encapsulation dot1q
 switchport mode trunk
@@ -74,30 +106,6 @@ channel-group 1 mode desirable non-silent
 channel-protocol lacp
 no shutdown
 exit
-!
-Interface fa0/1
-switchport trunk encapsulation dot1q
-switchport mode trunk
-switchport trunk allowed vlan 10,20,30,40,50,99
-spanning-tree portfast
-shutdown
-exit 
-!
-Interface fa0/2
-switchport trunk encapsulation dot1q
-switchport mode trunk
-switchport trunk allowed vlan 10,20,30,40,50,99
-spanning-tree portfast
-shutdown
-exit 
-!
-Interface fa0/3
-switchport trunk encapsulation dot1q
-switchport mode trunk
-switchport trunk allowed vlan 10,20,30,40,50,99
-spanning-tree portfast
-shutdown
-exit 
 !
 !! Setting up vlans
 !
