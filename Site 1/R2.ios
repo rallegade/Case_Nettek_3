@@ -1,7 +1,7 @@
 !R2
 enable
 configure terminal
-hostname D32
+hostname R2
 ip routing
 !
 line con 0
@@ -44,3 +44,52 @@ line vty 5 15
  logging synchronous
  exec-timeout 10 0
  exit
+!
+! Setting up IPsec configuration
+!
+! ISAKMP Policy
+crypto isakmp policy 10
+ encryption aes 256
+ hash sha256
+ authentication pre-share group 14
+ lifetime 3600
+! ISAKMP Pre-Shared Key
+crypto isakmp key S0ue6Ba04u2RGUe1A3 address 172.16.1.17
+! IPsec Transform Set
+crypto ipsec transform-set AES_SHA esp-aes 256 esp-sha-hmac
+ mode transport
+ exit
+! IPsec Profile
+Crypto ipsec profile IPSEC_PROFILE
+ set transform-set AES_SHA
+exit
+!
+! Setup interfaces
+!
+! Virtual Tunnel Interface to R3
+interface Tunnel 0
+ ip address 172.16.100.1 255.255.255.248
+ tunnel source 
+ tunnel destination 
+ tunnel mode ipsec ipv4
+ tunnel protection ipsec profile IPSEC_PROFILE
+!exit
+!
+interface GigabitEthernet0/0/0
+! ip address !IP for interface towards R1! 
+ no shut
+exit
+!
+interface GigabitEthernet0/0/1
+! ip address !IP for interface towards R3!
+ no shut
+exit
+!
+!interface GigabitEthernet0/1/0
+! ip address
+! no shut
+!
+!interface GigabitEthernet0/1/1
+! ip address
+! no shut
+!
