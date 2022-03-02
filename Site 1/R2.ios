@@ -76,12 +76,12 @@ interface Tunnel 0
 !exit
 !
 interface GigabitEthernet0/0/0
-! ip address !IP FOR R1! 
+! ip address !IP for interface towards R1! 
  no shut
 exit
 !
 interface GigabitEthernet0/0/1
-! ip address !IP FOR R3
+! ip address !IP for interface towards R3!
  no shut
 exit
 !
