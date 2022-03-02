@@ -83,17 +83,17 @@ exit
 !
 ! Towards R3
 interface GigabitEthernet0/0/1
- ip address 172.16.1.17 255.255.255.248
+ ip address 172.16.1.17 255.255.255.252
  no shut
 exit
 !
 ! Towards D1
 interface GigabitEthernet0/1/0
- ip address 172.16.1.21 255.255.255.248
+ ip address 172.16.1.21 255.255.255.252
  no shut
 !
 ! Towards D2
 interface GigabitEthernet0/1/1
- ip address 172.16.1.25 255.255.255.248
+ ip address 172.16.1.25 255.255.255.252
  no shut
 !
