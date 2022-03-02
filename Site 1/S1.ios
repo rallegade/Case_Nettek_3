@@ -42,4 +42,6 @@ line vty 5 15
  transport input ssh
  logging synchronous
  exec-timeout 10 0
- exit
+ exit 
+!
+!!
