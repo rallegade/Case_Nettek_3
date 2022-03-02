@@ -43,5 +43,77 @@ line vty 5 15
  logging synchronous
  exec-timeout 10 0
  exit 
+
 !
-!!
+!! Setting up STP
+!
+configure terminal
+spanning-tree mode rapid-pvst
+spanning-tree pathcost method short
+spanning-tree priority 32768
+spanning-tree hello-time 2
+spanning-tree max-age 20
+spanning-tree forward-time 15
+spanning-tree loopback-guard 
+exit
+!
+!! Setting up interfaces
+!
+interface range fa0/23-24
+switchport trunk encapsulation dot1q
+switchport mode trunk
+spanning-tree portfast 
+channel-group 1 mode desirable non-silent
+channel-protocol lacp
+no shutdown
+exit
+!
+Interface fa0/1
+switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport trunk allowed vlan 10,20,30,40,50,99
+spanning-tree portfast
+shutdown
+exit 
+!
+Interface fa0/2
+switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport trunk allowed vlan 10,20,30,40,50,99
+spanning-tree portfast
+shutdown
+exit 
+!
+Interface fa0/3
+switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport trunk allowed vlan 10,20,30,40,50,99
+spanning-tree portfast
+shutdown
+exit 
+!
+!! Setting up vlans
+!
+vlan 10
+name Administration
+vlan 20
+name Salg
+vlan 30
+name Produktion
+vlan 40
+name Server
+vlan 50
+name Management
+vlan 99
+name Native
+vlan 999
+name Blackhole
+exit
+!
+!! Setting up VTP
+!
+vtp domain GRP2
+vtp version 2
+vtp mode transparent
+vtp password **********
+exit
