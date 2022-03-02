@@ -169,4 +169,17 @@ standby 5 preempt
 standby 5 track fa0/2
 standby version 2
 standby 5 authentication md5 key-string YtGeKyuxeIAcxB35Fc24pBJwffV71I
+exit
 !
+! Setup EIGRP
+!
+router eigrp 1
+eigrp router-id 5.5.5.5
+network 172.16.1.20 255.255.255.252
+network 10.10.10.0 255.255.255.0
+network 10.10.20.0 255.255.255.0
+network 10.10.30.0 255.255.255.0
+network 10.10.40.0 255.255.255.0
+network 10.10.50.0 255.255.255.0
+passive-interface default
+no passive interface fa0/1
