@@ -1,0 +1,115 @@
+!! default config
+enable
+conf t
+Hostname D1
+no ip domain lookup
+banner motd # Ingen adgang for uvedkommende! #
+line con 0
+exec-timeout 0 0
+logging synchronous
+Exit
+line vty 0 4
+privilege level 15
+exec-timeout 0 0
+enable password *********
+service password-encryption
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no ip http server
+no ip http secure server
+ip domain-name GRP2.local
+crypto key generate rsa
+2048
+ip ssh version 2
+line vty 0 4
+transport input ssh
+login local
+username admin password ********
+end
+
+!! Setting up STP
+conf t
+spanning-tree mode rapid-pvst
+spanning-tree pathcost method short
+spanning-tree priority 32768
+spanning-tree hello-time 2
+spanning-tree max-age 20
+spanning-tree forward-time 15
+spanning-tree loopback-guard 
+exit
+
+!! DHCP Snooping Prevention
+conf t
+ip dhcp snooping
+ip dhcp snoop vlan 10,20,30,40,50,99,999
+exit
+
+!! Enabling CDP
+conf t
+cdp timer 50
+cdp holdtime 120
+cdp advertise-v2
+exit
+
+!! Setting up Etherchannel
+Int port-channel 2
+Switchport trunk allowed vlan 10,20,30,40,50,99
+exit
+
+
+!! Setting up interfaces
+interface range fa0/23-24
+switchport trunk encapsulation dot1q
+switchport mode trunk
+spanning-tree portfast 
+channel-group 2 mode desirable non-silent
+channel-protocol lacp
+no shutdown
+exit
+ 
+Interface fa0/1
+switchport trunk encapsulation dot1q
+switchport mode access
+switchport access vlan 999
+spanning-tree portfast
+shutdown
+exit
+ 
+Interface range fa0/22-24
+switchport trunk encapsulation dot1q
+switchport mode trunk
+spanning-tree portfast
+no shutdown
+Exit
+ 
+Interface range g0/1-2
+switchport trunk encapsulation dot1q
+switchport mode access
+switchport access vlan 999
+spanning-tree portfast
+shutdown
+exit
+
+!! Setting up vlans
+vlan 10
+name Administration
+vlan 20
+name Salg
+vlan 30
+name Produktion
+vlan 40
+name Server
+vlan 50
+name Management
+vlan 99
+name Native
+vlan 999
+name Blackhole
+exit
+
+!! Setting up VTP
+vtp domain GRP2
+vtp version 2
+vtp mode transparent
+vtp password **********
+exit
