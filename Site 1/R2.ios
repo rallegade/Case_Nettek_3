@@ -65,6 +65,7 @@ crypto isakmp policy 10
  encryption aes 256
  hash sha256
  authentication pre-share
+ group 14
  lifetime 3600
 ! ISAKMP Pre-Shared Key
 crypto isakmp key S0ue6Ba04u2RGUe1A3 address 172.16.1.17
