@@ -81,7 +81,7 @@ exit
 !
 ! Virtual Tunnel Interface to R3
 interface Tunnel 1
- ip address 172.16.100.1 255.255.255.248
+ ip address 172.16.100.1 255.255.255.252
  tunnel source 172.16.1.17
  tunnel destination 172.16.1.18
  tunnel mode ipsec ipv4
