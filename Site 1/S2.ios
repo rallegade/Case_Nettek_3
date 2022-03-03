@@ -44,6 +44,17 @@ line vty 5 15
  exec-timeout 10 0
  exit
 !
+! Enable logging
+!
+logging 10.10.40.52
+logging on
+! set Logging trap level
+logging trap notification
+!
+! Show copious timestamps in our logs
+service timestamps debug datetime msec show-timezone localtime
+service timestamps log datetime msec show-timezone localtime
+!
 !! Setting up STP
 !
 configure terminal
