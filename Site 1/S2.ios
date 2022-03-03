@@ -60,7 +60,6 @@ service timestamps log datetime msec show-timezone localtime
 spanning-tree mode rapid-pvst
 spanning-tree pathcost method short
 spanning-tree loopguard default
-exit
 !
 !! Setting up interfaces
 !
