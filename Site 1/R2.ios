@@ -67,14 +67,15 @@ crypto isakmp policy 10
  authentication pre-share
  group 14
  lifetime 3600
+exit
 ! ISAKMP Pre-Shared Key
-crypto isakmp key S0ue6Ba04u2RGUe1A3 address 172.16.1.17
+crypto isakmp key gruppe2vpn address 172.16.1.18
 ! IPsec Transform Set
 crypto ipsec transform-set AES_SHA esp-aes 256 esp-sha-hmac
- mode transport
+ mode tunnel
  exit
 ! IPsec Profile
-Crypto ipsec profile IPSEC_PROFILE
+crypto ipsec profile IPSEC_PROFILE
  set transform-set AES_SHA
 exit
 !
