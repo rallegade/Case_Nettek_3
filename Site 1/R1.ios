@@ -70,12 +70,31 @@ interface GigabitEthernet0/1/1
 !
 exit
 !
+! Deny all other as-paths than own to stop becomeing transit area
+!
+ip as-path access-list 1 permit ^$
+!
+route-map ISP1_WEIGHT permit 10
+ set weight 100
+exit
+!
 ! Setup BGP
 !
 router bgp 64513
  neighbor 1.0.0.254 remote-as 64517
  neighbor 2.0.0.254 remote-as 64518
  network 172.16.1.0 mask 255.255.255.252
- network 1.0.0.0
- network 2.0.0.0
+ neighbor 1.0.0.254 route-map ISP1_WEIGHT in
 exit
+!
+! Default route with IP SLA
+!
+track 8 ip sla 1 reachability
+exit
+!
+ip sla 1
+icmp-echo 1.0.0.254 source-ip 1.2.0.253
+frequency 30
+!
+ip route 0.0.0.0 0.0.0.0 2.0.0.254 5
+ip route 0.0.0.0 0.0.0.0 1.0.0.254 track 8
