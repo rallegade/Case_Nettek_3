@@ -102,7 +102,7 @@ exit
 !! Setting up VTP
 !
 vtp version 2
-vtp mode transparent
+vtp mode off
 exit
 !
 ! Setup NTP
