@@ -64,7 +64,7 @@ service timestamps log datetime msec show-timezone localtime
 crypto isakmp policy 10
  encryption aes 256
  hash sha256
- authentication pre-share group 14
+ authentication pre-share
  lifetime 3600
 ! ISAKMP Pre-Shared Key
 crypto isakmp key S0ue6Ba04u2RGUe1A3 address 172.16.1.18
@@ -80,13 +80,13 @@ exit
 ! Setup interfaces
 !
 ! Virtual Tunnel Interface to R2
-interface Tunnel 0
+interface Tunnel 1
  ip address 172.16.100.2 255.255.255.252
- tunnel source 
- tunnel destination 
+ tunnel source 172.16.1.18
+ tunnel destination 172.16.1.17
  tunnel mode ipsec ipv4
  tunnel protection ipsec profile IPSEC_PROFILE
-!exit
+exit
 !
 ! Towards R2
 interface GigabitEthernet0/0/1
@@ -97,22 +97,22 @@ interface GigabitEthernet0/0/1
  no shut
 exit
 interface GigabitEthernet0/0/1.10
+ encapsulation dot1Q 10
  ip address 10.10.12.254 255.255.255.0
  no sh
 exit
 interface GigabitEthernet0/0/1.20
+ encapsulation dot1Q 20
  ip address 10.10.22.254 255.255.255.0
  no sh
 exit
 interface GigabitEthernet0/0/1.30
+ encapsulation dot1Q 30
  ip address 10.10.32.254 255.255.255.0
  no sh
 exit
 interface GigabitEthernet0/0/1.50
- ip address 10.10.42.254 255.255.255.0
- no sh
-exit
-interface GigabitEthernet0/0/1.99
+ encapsulation dot1Q 50
  ip address 10.10.42.254 255.255.255.0
  no sh
 exit
@@ -132,16 +132,15 @@ eigrp router-id 3.3.3.3
 network 172.16.100.0 255.255.255.252
 network 10.10.0.0 255.255.0.0
 passive-interface default
-no passive interface tunnel 1
+no passive-interface tunnel 1
 !
 ! IP Helper setup
 !
-ip helper
-interface vlan 10
+interface GigabitEthernet0/0/1.10
 ip helper-address 10.10.40.51
-interface vlan 20
+interface GigabitEthernet0/0/1.10
 ip helper-address 10.10.40.51
-interface vlan 30
+interface GigabitEthernet0/0/1.10
 ip helper-address 10.10.40.51
 !
 ! Setup NTP

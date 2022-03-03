@@ -131,7 +131,6 @@ exit
 !
 vtp version 2
 vtp mode off
-exit
 !
 ! Setup SVI's and HSRP
 !
@@ -192,11 +191,10 @@ network 10.10.30.0 255.255.255.0
 network 10.10.40.0 255.255.255.0
 network 10.10.50.0 255.255.255.0
 passive-interface default
-no passive interface fa0/1
+no passive-interface fa0/1
 !
 ! IP Helper setup
 !
-ip helper
 interface vlan 10
 ip helper-address 10.10.40.51
 interface vlan 20
@@ -207,3 +205,8 @@ ip helper-address 10.10.40.51
 ! Setup NTP
 !
 ntp server 172.16.1.1
+!
+! WR
+!
+exit
+wr
