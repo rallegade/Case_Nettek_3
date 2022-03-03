@@ -60,12 +60,22 @@ exit
 !
 ! Towards ISP1
 interface GigabitEthernet0/1/0
- ip address 1.2.0.2 255.255.255.252
+ ip address 1.2.0.253 255.0.0.0
  no shut
 !
 ! Towards ISP2
 interface GigabitEthernet0/1/1
- ip address 2.2.0.2 255.255.255.252
+ ip address 2.2.0.253 255.0.0.0
  no shut
 !
+exit
+!
+! Setup BGP
+!
+router bgp 64513
+ neighbor 1.0.0.254 remote-as 64517
+ neighbor 2.0.0.254 remote-as 64518
+ network 172.16.1.0 mask 255.255.255.252
+ network 1.0.0.0
+ network 2.0.0.0
 exit
