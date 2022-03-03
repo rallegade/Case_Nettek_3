@@ -44,3 +44,28 @@ line vty 5 15
  logging synchronous
  exec-timeout 10 0
  exit
+! Setup interfaces
+!
+! Towards FW1
+interface GigabitEthernet0/0/0
+ ip address 172.16.1.1 255.255.255.252
+ no shut
+exit
+!
+! Towards FW2 SOHO emulated WAN
+interface GigabitEthernet0/0/1
+ ip address 172.16.1.5 255.255.255.252
+ no shut
+exit
+!
+! Towards ISP1
+interface GigabitEthernet0/1/0
+ ip address 1.0.2.2 255.255.255.252
+ no shut
+!
+! Towards ISP2
+interface GigabitEthernet0/1/1
+ ip address 2.0.2.2 255.255.255.252
+ no shut
+!
+exit
