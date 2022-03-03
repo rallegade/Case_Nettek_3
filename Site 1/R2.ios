@@ -61,6 +61,7 @@ service timestamps log datetime msec show-timezone localtime
 ! Setting up IPsec configuration
 !
 ! ISAKMP Policy
+!
 crypto isakmp policy 10
  encryption aes 256
  hash sha256
