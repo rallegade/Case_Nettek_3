@@ -1,7 +1,7 @@
 !R1
 enable
 configure terminal
-hostname D32
+hostname R1
 ip routing
 !
 line con 0
