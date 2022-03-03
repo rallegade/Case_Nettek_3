@@ -60,12 +60,12 @@ exit
 !
 ! Towards ISP1
 interface GigabitEthernet0/1/0
- ip address 1.0.2.2 255.255.255.252
+ ip address 1.2.0.2 255.255.255.252
  no shut
 !
 ! Towards ISP2
 interface GigabitEthernet0/1/1
- ip address 2.0.2.2 255.255.255.252
+ ip address 2.2.0.2 255.255.255.252
  no shut
 !
 exit
