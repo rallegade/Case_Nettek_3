@@ -110,3 +110,7 @@ vtp version 2
 vtp mode transparent
 vtp password **********
 exit
+!
+! Setup NTP
+!
+ntp server 172.16.1.1
