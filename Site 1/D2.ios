@@ -73,8 +73,11 @@ spanning-tree vlan 10,20,30 root secondary
 !! Setting up Etherchannel
 !
 configure terminal
-Int port-channel 1
-Switchport trunk allowed vlan 10,20,30,40,50,99
+interface port-channel 1
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 10,20,30,40,50
+ switchport mode trunk
 exit
 !
 !! Setting up interfaces
@@ -103,13 +106,12 @@ no shutdown
 exit 
 !
 interface range fa0/23-24
-switchport trunk encapsulation dot1q
-switchport mode trunk
-switchport trunk allowed vlan 10,20,30,40,50
-switchport trunk native vlan 99
-spanning-tree portfast 
-channel-group 1 mode desirable non-silent
-channel-protocol lacp
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 10,20,30,40,50
+ switchport mode trunk
+ channel-protocol lacp
+ channel-group 1 mode passive
 no shutdown
 exit
 !

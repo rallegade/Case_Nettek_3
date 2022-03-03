@@ -63,23 +63,22 @@ service timestamps log datetime msec show-timezone localtime
 configure terminal
 spanning-tree mode rapid-pvst
 spanning-tree pathcost method short
-spanning-tree hello-time 2
-spanning-tree max-age 20
-spanning-tree forward-time 15
 spanning-tree loopguard default 
 spanning-tree vlan 10,20,30 root primary
 spanning-tree vlan 40,50 root secondary
 !
 !! Setting up Etherchannel
 !
-configure terminal
-Int port-channel 1
-Switchport trunk allowed vlan 10,20,30,40,50,99
+interface port-channel 1
+switchport trunk encapsulation dot1q
+switchport trunk native vlan 99
+Switchport trunk allowed vlan 10,20,30,40,50
 exit
 !
 !! Setting up interfaces
 !
 interface fa0/1
+no switchport
 ip address 172.16.1.26 255.255.255.252
 exit 
 !
@@ -102,14 +101,12 @@ no shutdown
 exit 
 !
 interface range fa0/23-24
-switchport trunk encapsulation dot1q
-switchport mode trunk
-switchport trunk allowed vlan 10,20,30,40,50
-switchport trunk native vlan 99
-spanning-tree portfast 
-channel-group 1 mode desirable non-silent
-channel-protocol lacp
-no shutdown
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 10,20,30,40,50
+ switchport mode trunk
+ channel-protocol lacp
+ channel-group 1 mode active
 exit
 !
 !! Setting up vlans
