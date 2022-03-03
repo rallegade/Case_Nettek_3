@@ -103,10 +103,8 @@ exit
 !
 !! Setting up VTP
 !
-vtp domain GRP2
 vtp version 2
 vtp mode transparent
-vtp password **********
 exit
 !
 ! Setup NTP
