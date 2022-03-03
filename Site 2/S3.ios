@@ -59,28 +59,19 @@ service timestamps log datetime msec show-timezone localtime
 !
 !! Setting up STP
 !
-configure terminal
 spanning-tree mode rapid-pvst
 spanning-tree pathcost method short
-spanning-tree priority 32768
-spanning-tree hello-time 2
-spanning-tree max-age 20
-spanning-tree forward-time 15
-spanning-tree loopback-guard 
-exit
+spanning-tree loopguard default
 !
 !! Setting up interfaces
 !
-Interface fa0/1
-switchport trunk encapsulation dot1q
+interface g2/0/1
 switchport mode trunk
-switchport trunk allowed vlan 10,20,30,50,99
+switchport trunk allowed vlan 10,20,30,40,50
+switchport trunk native vlan 99
 spanning-tree portfast
 no shutdown
 exit
-!
-switchport mode access
-
 !
 !! Setting up vlans
 !
@@ -102,8 +93,11 @@ exit
 !
 vtp version 2
 vtp mode off
-exit
 !
 ! Setup NTP
 !
 ntp server 172.16.1.1
+!
+! WR
+!
+wr
