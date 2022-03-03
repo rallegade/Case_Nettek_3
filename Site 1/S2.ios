@@ -57,14 +57,9 @@ service timestamps log datetime msec show-timezone localtime
 !
 !! Setting up STP
 !
-configure terminal
 spanning-tree mode rapid-pvst
 spanning-tree pathcost method short
-spanning-tree priority 32768
-spanning-tree hello-time 2
-spanning-tree max-age 20
-spanning-tree forward-time 15
-spanning-tree loopback-guard 
+spanning-tree loopguard default
 exit
 !
 !! Setting up interfaces
