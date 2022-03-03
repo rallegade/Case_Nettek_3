@@ -1,7 +1,7 @@
 !S2
 enable
 configure terminal
-hostname S2
+hostname S3
 !
 line con 0
  exec-timeout 10 0
