@@ -106,12 +106,12 @@ interface GigabitEthernet0/0/1.30
  ip address 10.10.32.254 255.255.255.0
  no sh
 exit
-interface GigabitEthernet0/0/1.40
+interface GigabitEthernet0/0/1.50
  ip address 10.10.42.254 255.255.255.0
  no sh
 exit
-interface GigabitEthernet0/0/1.50
- ip address 10.10.52.254 255.255.255.0
+interface GigabitEthernet0/0/1.99
+ ip address 10.10.42.254 255.255.255.0
  no sh
 exit
 !
