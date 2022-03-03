@@ -116,3 +116,7 @@ exit
 vtp version 2
 vtp mode transparent
 exit
+!
+! Setup NTP
+!
+ntp server 172.16.1.1
