@@ -134,7 +134,6 @@ exit
 !
 vtp version 2
 vtp mode off
-exit
 !
 ! Setup SVI's and HSRP
 !
