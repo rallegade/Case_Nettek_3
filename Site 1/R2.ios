@@ -64,7 +64,7 @@ service timestamps log datetime msec show-timezone localtime
 crypto isakmp policy 10
  encryption aes 256
  hash sha256
- authentication pre-share group 14
+ authentication pre-share
  lifetime 3600
 ! ISAKMP Pre-Shared Key
 crypto isakmp key S0ue6Ba04u2RGUe1A3 address 172.16.1.17
@@ -80,10 +80,10 @@ exit
 ! Setup interfaces
 !
 ! Virtual Tunnel Interface to R3
-interface Tunnel 0
+interface Tunnel 1
  ip address 172.16.100.1 255.255.255.248
- tunnel source 
- tunnel destination 
+ tunnel source 172.16.1.17
+ tunnel destination 172.16.1.18
  tunnel mode ipsec ipv4
  tunnel protection ipsec profile IPSEC_PROFILE
 !exit
@@ -117,9 +117,9 @@ router eigrp 1
 eigrp router-id 2.2.2.2
 network 172.16.100.0 255.255.255.252
 passive-interface default
-no passive interface GigabitEthernet0/1/0
-no passive interface GigabitEthernet0/1/1
-no passive interface tunnel 1
+no passive-interface GigabitEthernet0/1/0
+no passive-interface GigabitEthernet0/1/1
+no passive-interface tunnel 1
 !
 ! Setup NTP
 !
