@@ -23,7 +23,7 @@ service password-encryption
 enable secret cisco
 !
 ip ssh version 2
-ip domain-name RKV.local
+ip domain-name GRP2.local
 crypto key generate rsa general-keys modulus 2048
 !
 ! Set ssh version to V2
@@ -125,6 +125,7 @@ passive-interface default
 no passive-interface GigabitEthernet0/1/0
 no passive-interface GigabitEthernet0/1/1
 no passive-interface tunnel 1
+redistribute static
 !
 ! Setup NTP
 !
@@ -140,9 +141,14 @@ line console 0
 login authentication default
 line vty 0 15
 login authentication default
+exit
 !
 !
 ! IP Default gateway
+!
 ip default-gateway 172.16.1.13
-exit
+!
+! Gateway of last resort
+!
+ip route 0.0.0.0 0.0.0.0 g0/0/0 172.16.1.14
 !

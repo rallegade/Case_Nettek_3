@@ -23,7 +23,7 @@ service password-encryption
 enable secret cisco
 !
 ip ssh version 2
-ip domain-name RKV.local
+ip domain-name GRP2.local
 crypto key generate rsa general-keys modulus 2048
 !
 ! Set ssh version to V2
