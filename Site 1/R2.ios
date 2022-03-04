@@ -140,3 +140,9 @@ line console 0
 login authentication default
 line vty 0 15
 login authentication default
+!
+!
+! IP Default gateway
+ip default-gateway 172.16.1.13
+exit
+!
