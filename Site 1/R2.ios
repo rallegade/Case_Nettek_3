@@ -129,3 +129,14 @@ no passive-interface tunnel 1
 ! Setup NTP
 !
 ntp server 172.16.1.1
+!
+! Setup Tacacs+ login
+!
+aaa new-model
+tacacs-server host 10.10.40.52 key secret
+aaa authentication login default group tacacs+ local
+aaa authorization exec default group tacacs+ local
+line console 0
+login authentication default
+line vty 0 15
+login authentication default
