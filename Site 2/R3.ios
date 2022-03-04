@@ -116,7 +116,7 @@ interface GigabitEthernet0/0/0.30
 exit
 interface GigabitEthernet0/0/0.50
  encapsulation dot1Q 50
- ip address 10.10.42.254 255.255.255.0
+ ip address 10.10.52.254 255.255.255.0
  no sh
 exit
 !
@@ -139,11 +139,11 @@ no passive-interface tunnel 1
 !
 ! IP Helper setup
 !
-interface GigabitEthernet0/0/1.10
+interface GigabitEthernet0/0/0.10
 ip helper-address 10.10.40.51
-interface GigabitEthernet0/0/1.10
+interface GigabitEthernet0/0/0.20
 ip helper-address 10.10.40.51
-interface GigabitEthernet0/0/1.10
+interface GigabitEthernet0/0/0.30
 ip helper-address 10.10.40.51
 !
 ! Setup NTP
