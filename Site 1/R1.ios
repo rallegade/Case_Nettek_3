@@ -119,7 +119,7 @@ ip route 172.16.0.0 255.255.0.0 g0/0/0 172.16.1.2
 ! Setup NTP server
 !
 clock timezone GMT +1
-exit
+end
 ! Stop and edit this to the right time
 clock set 08:32:30 04 MARCH 2022
 !
@@ -127,3 +127,14 @@ configure terminal
 ntp master
 interface gi0/0/0
 ntp broadcast
+!
+! Setup Tacacs+ login
+!
+aaa new-model
+tacacs-server host 10.10.40.52 key secret
+aaa authentication login default group tacacs+ local
+aaa authorization exec default group tacacs+ local
+line console 0
+login authentication default
+line vty 0 15
+login authentication default
