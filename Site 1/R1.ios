@@ -112,12 +112,16 @@ frequency 30
 ip route 0.0.0.0 0.0.0.0 2.0.0.254 5
 ip route 0.0.0.0 0.0.0.0 1.0.0.254 track 8
 !
+! Ip Route
+!
+ip route 172.16.0.0 255.255.0.0 g0/0/0 172.16.1.2
+!
 ! Setup NTP server
 !
 clock timezone GMT +1
 exit
 ! Stop and edit this to the right time
-clock set xx:xx:xx 23 FEBRUARY 2022
+clock set 08:32:30 04 MARCH 2022
 !
 configure terminal
 ntp master
