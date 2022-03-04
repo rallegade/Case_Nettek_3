@@ -112,9 +112,10 @@ frequency 30
 ip route 0.0.0.0 0.0.0.0 2.0.0.254 5
 ip route 0.0.0.0 0.0.0.0 1.0.0.254 track 8
 !
-! Ip Route
+! Static IP Routes
 !
 ip route 172.16.0.0 255.255.0.0 g0/0/0 172.16.1.2
+ip route 10.10.0.0 255.255.0.0 g0/0/0 172.16.1.2
 !
 ! Setup NTP server
 !
