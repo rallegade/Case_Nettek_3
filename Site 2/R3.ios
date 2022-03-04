@@ -96,25 +96,25 @@ interface GigabitEthernet0/0/1
  ip address 172.16.1.18 255.255.255.252
  no shut
 exit
-interface GigabitEthernet0/0/1
+interface GigabitEthernet0/0/0
  no shut
 exit
-interface GigabitEthernet0/0/1.10
+interface GigabitEthernet0/0/0.10
  encapsulation dot1Q 10
  ip address 10.10.12.254 255.255.255.0
  no sh
 exit
-interface GigabitEthernet0/0/1.20
+interface GigabitEthernet0/0/0.20
  encapsulation dot1Q 20
  ip address 10.10.22.254 255.255.255.0
  no sh
 exit
-interface GigabitEthernet0/0/1.30
+interface GigabitEthernet0/0/0.30
  encapsulation dot1Q 30
  ip address 10.10.32.254 255.255.255.0
  no sh
 exit
-interface GigabitEthernet0/0/1.50
+interface GigabitEthernet0/0/0.50
  encapsulation dot1Q 50
  ip address 10.10.42.254 255.255.255.0
  no sh
