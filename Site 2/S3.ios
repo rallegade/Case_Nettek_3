@@ -74,7 +74,7 @@ no shutdown
 exit
 !
 interface vlan 50 
-ip address 10.10.50.3 255.255.255.0
+ip address 10.10.52.3 255.255.255.0
 exit
 !
 !! Setting up vlans
