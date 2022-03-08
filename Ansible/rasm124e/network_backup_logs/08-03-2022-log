@@ -1,0 +1,110 @@
+
+PLAY [Backup Cisco Router or Switch] ***********************************************************************************
+
+TASK [Accespt ansible net hostname] ************************************************************************************
+ok: [R1]
+ok: [R2]
+ok: [S3]
+ok: [S1]
+ok: [S2]
+
+TASK [Get current date] ************************************************************************************************
+changed: [S2 -> localhost]
+changed: [S3 -> localhost]
+changed: [R2 -> localhost]
+changed: [R1 -> localhost]
+changed: [S1 -> localhost]
+
+TASK [Get current time] ************************************************************************************************
+changed: [S2 -> localhost]
+changed: [S1 -> localhost]
+changed: [S3 -> localhost]
+changed: [R1 -> localhost]
+changed: [R2 -> localhost]
+
+TASK [Get running-config and save it] **********************************************************************************
+changed: [R1]
+changed: [R2]
+changed: [S3]
+changed: [S2]
+changed: [S1]
+
+TASK [Tasks done] ******************************************************************************************************
+ok: [S1] => {
+    "msg": "All tasks has been done on 2022-Mar-08 at 11:06."
+}
+ok: [S3] => {
+    "msg": "All tasks has been done on 2022-Mar-08 at 11:06."
+}
+ok: [S2] => {
+    "msg": "All tasks has been done on 2022-Mar-08 at 11:06."
+}
+ok: [R1] => {
+    "msg": "All tasks has been done on 2022-Mar-08 at 11:06."
+}
+ok: [R2] => {
+    "msg": "All tasks has been done on 2022-Mar-08 at 11:06."
+}
+
+PLAY RECAP *************************************************************************************************************
+R1                         : ok=5    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+R2                         : ok=5    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+S1                         : ok=5    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+S2                         : ok=5    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+S3                         : ok=5    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [Backup Cisco Router or Switch] ***********************************************************************************
+
+TASK [Accespt ansible net hostname] ************************************************************************************
+ok: [R1]
+ok: [R2]
+ok: [S3]
+ok: [S1]
+ok: [S2]
+
+TASK [Get current date] ************************************************************************************************
+changed: [S3 -> localhost]
+changed: [S2 -> localhost]
+changed: [R2 -> localhost]
+changed: [S1 -> localhost]
+changed: [R1 -> localhost]
+
+TASK [Get current time] ************************************************************************************************
+changed: [S1 -> localhost]
+changed: [S2 -> localhost]
+changed: [S3 -> localhost]
+changed: [R1 -> localhost]
+changed: [R2 -> localhost]
+
+TASK [Get running-config and save it] **********************************************************************************
+changed: [R1]
+changed: [R2]
+changed: [S3]
+changed: [S2]
+changed: [S1]
+
+TASK [Tasks done] ******************************************************************************************************
+ok: [S1] => {
+    "msg": "All tasks has been done on 2022-Mar-08 at 11:22."
+}
+ok: [S2] => {
+    "msg": "All tasks has been done on 2022-Mar-08 at 11:22."
+}
+ok: [S3] => {
+    "msg": "All tasks has been done on 2022-Mar-08 at 11:22."
+}
+ok: [R1] => {
+    "msg": "All tasks has been done on 2022-Mar-08 at 11:22."
+}
+ok: [R2] => {
+    "msg": "All tasks has been done on 2022-Mar-08 at 11:22."
+}
+
+PLAY RECAP *************************************************************************************************************
+R1                         : ok=5    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+R2                         : ok=5    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+S1                         : ok=5    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+S2                         : ok=5    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+S3                         : ok=5    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
