@@ -151,6 +151,7 @@ login on-success log
 !
 interface range gi1/0/3-22
 shutdown
+!ip access-group DENY_VLANXX_OUT in
 switchport mode access
 switchport nonegotiate
 spanning-tree portfast
@@ -170,6 +171,7 @@ exit
 !
 interface range gi1/0/25-52
 shutdown
+!ip access-group DENY_VLANXX_OUT in
 switchport mode access
 switchport nonegotiate
 spanning-tree portfast
