@@ -1,0 +1,18 @@
+
+[Cisco]
+S1 ansible_host=10.10.50.1
+S2 ansible_host=10.10.50.2
+S3 ansible_host=10.10.52.3
+#D1 ansible_host=10.10.50.252
+#D2 ansible_host=10.10.50.253
+R1 ansible_host=172.16.1.1
+R2 ansible_host=172.16.1.13
+#R3 ansible_host=172.16.1.18
+[Cisco:vars]
+ansible_connection=network_cli
+ansible_network_os=ios
+ansible_user=ansible
+ansible_password=cisco
+ansible_become=yes
+ansible_become_method=enable
+ansible_become_password=cisco
