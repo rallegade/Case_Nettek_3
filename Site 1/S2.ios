@@ -135,6 +135,10 @@ interface g1/0/1
 ip dhcp snooping trust
 interface g1/0/2
 ip dhcp snooping trust
+interface g1/0/23
+ip dhcp snooping trust
+interface g1/0/24
+ip dhcp snooping trust
 exit
 no service dhcp
 ! Block brute force login attempts while maintaining access for legitimate source addresses.
