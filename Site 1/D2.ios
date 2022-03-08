@@ -229,9 +229,9 @@ login authentication default
 ip dhcp snooping
 interface port-channel 1
 ip dhcp snooping trust
-interface port-channel fa0/2
+interface fa0/2
 ip dhcp snooping trust
-interface port-channel fa0/3
+interface fa0/3
 ip dhcp snooping trust
 no service dhcp
 ! Block brute force login attempts while maintaining access for legitimate source addresses.
