@@ -125,6 +125,103 @@ login authentication default
 line vty 0 15
 login authentication default
 !
+! Hardening, make sure the right interfaces are used here
+!
+!
+! DHCP Snooping
+!
+ip dhcp snooping
+interface g1/0/1
+ip dhcp snooping trust
+interface g1/0/2
+ip dhcp snooping trust
+exit
+no service dhcp
+! Block brute force login attempts while maintaining access for legitimate source addresses.
+login block-for 100 attempts 15 within 100
+login quiet-mode access-class 100
+login on-failure log
+login on-success log
+!
+! Secure all interfaces
+!
+interface range gi1/0/3-52
+shutdown
+switchport mode access
+switchport nonegotiate
+spanning-tree portfast
+spanning-tree bpduguard enable
+spanning-tree guard root
+ip dhcp snooping limit rate 20
+switchport access vlan 999
+no cdp enable
+switchport protected
+switchport port-security
+switchport port-security maximum 5
+switchport port-security violation  restrict
+switchport port-security mac-address sticky
+switchport port-security aging time 30
+switchport port-security aging type inactivity
+exit
+!
+no ip http secure-server
+no ip http server
+!
+no service pad
+no ip source-route
+no ip finger
+no ip bootp server
+no ip domain-lookup
+!
+! ACL 
+!
+! VLAN 10 
+!
+ip access-list extended DENY_VLAN10_OUT
+5 permit ip 10.10.10.0 0.0.0.255 10.10.10.0 0.0.0.255
+6 permit ip 10.10.10.0 0.0.0.255 10.10.12.0 0.0.0.255
+10 permit udp any eq bootpc any eq bootps
+13 deny tcp 10.10.10.0 0.0.0.255 host 10.10.40.51 eq 445
+14 deny udp 10.10.10.0 0.0.0.255 host 10.10.40.51 eq 3389
+15 deny tcp 10.10.10.0 0.0.0.255 host 10.10.40.51 eq 80
+16 deny tcp 10.10.10.0 0.0.0.255 host 10.10.40.51 eq 443
+20 permit ip 10.10.10.0 0.0.0.255 host 10.10.40.51
+100 deny ip any 10.0.0.0 0.0.255.255
+!
+! VLAN 20
+!
+ip access-list extended DENY_VLAN20_OUT
+5 permit ip 10.10.20.0 0.0.0.255 10.10.20.0 0.0.0.255
+6 permit ip 10.10.20.0 0.0.0.255 10.10.22.0 0.0.0.255
+10 permit udp any eq bootpc any eq bootps
+13 deny tcp 10.10.20.0 0.0.0.255 host 10.10.40.51 eq 445
+14 deny udp 10.10.20.0 0.0.0.255 host 10.10.40.51 eq 3389
+15 deny tcp 10.10.20.0 0.0.0.255 host 10.10.40.51 eq 80
+16 deny tcp 10.10.20.0 0.0.0.255 host 10.10.40.51 eq 443
+20 permit ip 10.10.20.0 0.0.0.255 host 10.10.40.51
+100 deny ip any 10.0.0.0 0.0.255.255
+!
+! VLAN 30
+!
+ip access-list extended DENY_VLAN30_OUT
+5 permit ip 10.10.30.0 0.0.0.255 10.10.30.0 0.0.0.255
+6 permit ip 10.10.30.0 0.0.0.255 10.10.42.0 0.0.0.255
+10 permit udp any eq bootpc any eq bootps
+13 deny tcp 10.10.30.0 0.0.0.255 host 10.10.40.51 eq 445
+14 deny udp 10.10.30.0 0.0.0.255 host 10.10.40.51 eq 3389
+15 deny tcp 10.10.30.0 0.0.0.255 host 10.10.40.51 eq 80
+16 deny tcp 10.10.30.0 0.0.0.255 host 10.10.40.51 eq 443
+20 permit ip 10.10.30.0 0.0.0.255 host 10.10.40.51
+100 deny ip any 10.0.0.0 0.0.255.255
+!
+! VLAN 50
+!
+ip access-list extended DENY_VLAN50_OUT
+5 permit ip 10.10.50.0 0.0.0.255 10.10.50.0 0.0.0.255
+6 permit ip 10.10.40.0 0.0.0.255 10.10.40.0 0.0.0.255
+50 permit ip 10.10.40.0 0.0.0.255 host 1.1.1.1
+100 deny ip any 10.0.0.0 0.0.255.255
+!
 ! Write read
 !
 wr
