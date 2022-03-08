@@ -114,6 +114,9 @@ login authentication default
 line vty 0 15
 login authentication default
 exit
+!
+! Setup Automatic Backup to FTP server
+!
 archive
 log config
 logging enable
