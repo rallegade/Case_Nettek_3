@@ -224,7 +224,7 @@ ip access-list extended DENY_VLAN20_OUT
 !
 ip access-list extended DENY_VLAN30_OUT
 5 permit ip 10.10.30.0 0.0.0.255 10.10.30.0 0.0.0.255
-6 permit ip 10.10.30.0 0.0.0.255 10.10.42.0 0.0.0.255
+6 permit ip 10.10.30.0 0.0.0.255 10.10.32.0 0.0.0.255
 10 permit udp any eq bootpc any eq bootps
 13 deny tcp 10.10.30.0 0.0.0.255 host 10.10.40.51 eq 445
 14 deny udp 10.10.30.0 0.0.0.255 host 10.10.40.51 eq 3389
@@ -237,8 +237,8 @@ ip access-list extended DENY_VLAN30_OUT
 !
 ip access-list extended DENY_VLAN50_OUT
 5 permit ip 10.10.50.0 0.0.0.255 10.10.50.0 0.0.0.255
-6 permit ip 10.10.40.0 0.0.0.255 10.10.40.0 0.0.0.255
-50 permit ip 10.10.40.0 0.0.0.255 host 1.1.1.1
+6 permit ip 10.10.50.0 0.0.0.255 10.10.52.0 0.0.0.255
+7 permit ip 10.10.52.0 0.0.0.255 10.10.40.0 0.0.0.255
 100 deny ip any 10.0.0.0 0.0.255.255
 !
 ! Write read
