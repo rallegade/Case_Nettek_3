@@ -221,6 +221,74 @@ login authentication default
 line vty 0 15
 login authentication default
 !
+! Hardening, make sure the right interfaces are used here
+!
+!
+! DHCP Snooping
+!
+ip dhcp snooping
+interface port-channel 1
+ip dhcp snooping trust
+interface port-channel fa0/2
+ip dhcp snooping trust
+interface port-channel fa0/3
+ip dhcp snooping trust
+no service dhcp
+! Block brute force login attempts while maintaining access for legitimate source addresses.
+login block-for 100 attempts 15 within 100
+login quiet-mode access-class 100
+login on-failure log
+login on-success log
+!
+! Secure all interfaces
+!
+interface range fa0/4-22
+shutdown
+switchport mode access
+switchport nonegotiate
+spanning-tree portfast
+spanning-tree bpduguard enable
+spanning-tree guard root
+ip dhcp snooping limit rate 20
+switchport access vlan 999
+no cdp enable
+switchport protected
+switchport port-security
+switchport port-security maximum 5
+switchport port-security violation  restrict
+switchport port-security mac-address sticky
+switchport port-security aging time 30
+switchport port-security aging type inactivity
+exit
+!
+interface range gi0/1-2
+shutdown
+switchport mode access
+switchport nonegotiate
+spanning-tree portfast
+spanning-tree bpduguard enable
+spanning-tree guard root
+ip dhcp snooping limit rate 20
+switchport access vlan 999
+no cdp enable
+switchport protected
+switchport port-security
+switchport port-security maximum 5
+switchport port-security violation  restrict
+switchport port-security mac-address sticky
+switchport port-security aging time 30
+switchport port-security aging type inactivity
+exit
+!
+no ip http secure-server
+no ip http server
+!
+no service pad
+no ip source-route
+no ip finger
+no ip bootp server
+no ip domain-lookup
+!
 ! WR
 !
 wr
