@@ -33,6 +33,7 @@ ip ssh version 2
 username 439291a privilege 15 secret 5 $1$O3u3$.UV9kHhLqVczAADeZAWhk0
 username benj4946 privilege 15 secret 5 $1$NJF1$nscRmQx4VeeVPamMbg44g/
 username Frede privilege 15 secret 5 $1$A0Jn$KL345p8Npe.JkeY9SW7dz0
+username ansible password 7 110A1016141D
 !
 line vty 0 4
  login local
