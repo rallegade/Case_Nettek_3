@@ -10,6 +10,14 @@ sudo apt-get install -y python3-paramiko
 
 #change the directory for backup in the backup.yaml
 
+#Allow "insecure" ssh for cisco devices
+sudo nano /etc/ssh/ssh_config
+
+#Add the following to the file
+
+Ciphers aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,3des-cbc,aes128-cbc,3des-cbc,aes192-cbc,aes256-cbc
+KexAlgorithms +diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1,diffie-hellman-group1-sha1
+
 #create the backup directory and allow any into it
 mkdir /backups/
 chmod 777 /backups/
