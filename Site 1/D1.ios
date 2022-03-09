@@ -210,13 +210,27 @@ ntp server 172.16.1.1
 ! Setup Tacacs+ login
 !
 aaa new-model
-tacacs-server host 10.10.40.52 key secret
+tacacs-server host 10.10.40.52 key password
 aaa authentication login default group tacacs+ local
 aaa authorization exec default group tacacs+ local
 line console 0
 login authentication default
 line vty 0 15
 login authentication default
+exit
+!
+! Setup Automatic Backup to FTP server
+!
+archive
+log config
+logging enable
+hidekeys
+exit
+path ftp://ciscobackup:test1234!@10.10.40.52/Backup/$h-
+write-memory
+time-period 1440
+exit
+!
 ! Hardening, make sure the right interfaces are used here
 !
 !
