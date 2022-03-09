@@ -1,0 +1,20 @@
+#Install Ansible on ubuntu 20.04 LTS
+sudo apt install ansible -y
+
+#Install paramiko
+sudo apt-get install -y python3-paramiko
+
+#Change the defaults in ansible.cfg
+
+#change hostnames in the hosts file
+
+#change the directory for backup in the backup.yaml
+
+#create the backup directory and allow any into it
+mkdir /backups/
+chmod 777 /backups/
+
+#Setting up cronjob
+crontab -e 
+#insert
+* */6 * * * /usr/bin/ansible-playbook /etc/ansible/backup.yaml > /home/rasm124e/ansible.log
