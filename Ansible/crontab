@@ -21,4 +21,4 @@
 # For more information see the manual pages of crontab(5) and cron(8)
 #
 # m h  dom mon dow   command
-00 04 * * * /home/rasm124e/automatic_tasks.sh >> /home/rasm124e/network_backup_logs/"`date +"%d-%m-%Y"`"-log
+* */6 * * * /usr/bin/ansible-playbook /etc/ansible/backup.yaml > /home/rasm124e/ansible.log
