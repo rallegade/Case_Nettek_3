@@ -213,7 +213,7 @@ ntp server 172.16.1.1
 ! Setup Tacacs+ login
 !
 aaa new-model
-tacacs-server host 10.10.40.52 key secret
+tacacs-server host 10.10.40.52 key password
 aaa authentication login default group tacacs+ local
 aaa authorization exec default group tacacs+ local
 line console 0
