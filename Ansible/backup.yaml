@@ -21,7 +21,7 @@
          #ansible_host = getting device IP, ansible_net_hostname = getting device hostname
          filename: "{{ ansible_net_hostname }}_{{ ansible_host }}.cfg"
          #Every time create a new directory under named date and time
-         dir_path: /home/rasm124e/network_backups/{{ date.stdout }}_at_{{ time.stdout }}
+         dir_path: /backups/{{ date.stdout }}_at_{{ time.stdout }}
     - name: Tasks done
       debug: msg="All tasks has been done on {{ date.stdout }} at {{ time.stdout }}."
 #End of codes
