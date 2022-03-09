@@ -123,7 +123,7 @@ logging enable
 hidekeys
 exit
 path ftp://ciscobackup:test1234!@10.10.40.52/Backup/S3/$h-
-write-memorygi
+write-memory
 time-period 1440
 exit
 !
